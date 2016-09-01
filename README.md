@@ -1,8 +1,8 @@
 # Slim Framework 3 Skeleton Application With Swoole
 
 ##Features
-* Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. 
-* Use the latest Slim 3 with the PHP-View template renderer.
+* Quickly setup and start working on a new Slim Framework 3 . 
+* Use the latest Slim 3 with the PHP-View template render.
 * It also uses the Monolog logger.
 * It can run well with swoole or php-fpm.
 * Built for Composer
@@ -16,7 +16,7 @@
 ## Install the Application
 
 ```
-git clone https://github.com/kcloze/slime-swoole.git  my-app-name
+git clone https://github.com/kcloze/slim-swoole.git  my-app-name
 cd my-app-name
 composer update
 php public/server.php
