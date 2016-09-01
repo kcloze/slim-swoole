@@ -57,7 +57,7 @@ class HttpServer
                 }
             }
             ob_start();
-            //实例化yii对象
+            //实例化slime对象
             try {
                 $settings = require __DIR__ . '/../src/settings.php';
                 $app      = new \Slim\App($settings);
@@ -127,9 +127,7 @@ class HttpServer
         if (isset($_SERVER['REQUEST_URI'])) {
             $log .= '[QUERY] ' . $_SERVER['REQUEST_URI'];
         }
-        //YcfCore::$_log->log($log, 'fatal');
-        //Yii::log($log, CLogger::LEVEL_ERROR, 'application');
-        //YcfCore::$_log->sendTask();
+
         if ($this->response) {
             $this->response->status(500);
             $this->response->end($log);
