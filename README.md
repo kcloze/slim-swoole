@@ -11,13 +11,15 @@ https://github.com/kcloze/slime-swoole.git  my-app-name
 
 cd my-app-name
 composer update
+php public/server.php
+
 ```
 
     
 Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
+* Open your browser: http://localhost:9501/
+* Ensure `logs/` is web writeable
 
-That's it! Now go build something cool.
+
 
