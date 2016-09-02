@@ -1,4 +1,4 @@
-# Slim Framework 3 Skeleton Application With Swoole
+# Slim 3 MVC Skeleton With Swoole
 
 ##Features
 * Quickly setup and start working on a new Slim Framework 3 . 
