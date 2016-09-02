@@ -5,6 +5,7 @@
 * Use the latest Slim 3 with the PHP-View template render.
 * It also uses the Monolog logger.
 * It can run well with swoole or php-fpm.
+* Use the lightest PHP database: Medoo
 * Built for Composer
 
 
@@ -30,6 +31,7 @@ php public/server.php
 ## Docs
 * [slimframework](http://www.slimframework.com/docs/) 
 * [swoole](http://www.swoole.com/) 
+* [Medoo](http://medoo.in/) 
 
 
 
