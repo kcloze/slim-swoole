@@ -1,30 +1,40 @@
 <?php
+
+/*
+ * This file is part of slim-swoole.
+ *
+ * (c) kcloze <pei.greet@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 return [
     'settings' => [
-        'displayErrorDetails'    => true, // set to false in production
+        'displayErrorDetails' => true, // set to false in production
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
 
         // Renderer settings
-        'renderer'               => [
+        'renderer' => [
             'template_path' => __DIR__ . '/../../templates/',
         ],
 
         // Monolog settings
-        'logger'                 => [
-            'name'  => 'slim-app',
-            'path'  => __DIR__ . '/../../logs/app.log',
+        'logger' => [
+            'name' => 'slim-app',
+            'path' => __DIR__ . '/../../logs/app.log',
             'level' => \Monolog\Logger::DEBUG,
         ],
 
         //db settings
-        'db'                     => [
+        'db' => [
             'database_type' => 'mysql',
             'database_name' => 'test',
-            'server'        => '127.0.0.1',
-            'username'      => 'kcloze',
-            'password'      => 'kcloze',
-            'charset'       => 'utf-8',
-            'port'          => '3306',
+            'server' => '127.0.0.1',
+            'username' => 'root',
+            'password' => 'kcloze',
+            'charset' => 'utf-8',
+            'port' => '3306',
         ],
     ],
 ];

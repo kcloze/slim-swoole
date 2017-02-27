@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of slim-swoole.
+ *
+ * (c) kcloze <pei.greet@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 class HttpServer
 {
     public static $instance;
@@ -9,27 +18,27 @@ class HttpServer
     public static $post;
     public static $header;
     public static $server;
-    private $application;
     public $response = null;
+    private $application;
 
     public function __construct()
     {
-        $http = new swoole_http_server("0.0.0.0", 9501);
+        $http = new Swoole\Http\Server('0.0.0.0', 9501);
 
         $http->set(
-            array(
-                'worker_num'    => 5,
-                'daemonize'     => false,
-                'max_request'   => 10,
+            [
+                'worker_num' => 5,
+                'daemonize' => false,
+                'max_request' => 10,
                 'dispatch_mode' => 1,
-            )
+            ]
         );
 
-        $http->on('WorkerStart', array($this, 'onWorkerStart'));
+        $http->on('WorkerStart', [$this, 'onWorkerStart']);
 
         $http->on('request', function ($request, $response) {
             //捕获异常
-            register_shutdown_function(array($this, 'handleFatal'));
+            register_shutdown_function([$this, 'handleFatal']);
             //请求过滤
             if ($request->server['path_info'] == '/favicon.ico' || $request->server['request_uri'] == '/favicon.ico') {
                 return $response->end();
@@ -60,7 +69,7 @@ class HttpServer
             //实例化slim对象
             try {
                 $settings = require __DIR__ . '/../app/config/settings.php';
-                $app      = new \Slim\App($settings);
+                $app = new \Slim\App($settings);
                 // Set up dependencies
                 require __DIR__ . '/../app/config/dependencies.php';
                 // Register middleware
@@ -75,15 +84,14 @@ class HttpServer
             $result = ob_get_contents();
             ob_end_clean();
             $response->end($result);
-            unset($result);
-            unset($app);
+            unset($result, $app);
         });
 
         $http->start();
     }
+
     /**
-     * Fatal Error的捕获
-     *
+     * Fatal Error的捕获.
      */
     public function handleFatal()
     {
@@ -103,10 +111,10 @@ class HttpServer
                 return;
         }
         $message = $error['message'];
-        $file    = $error['file'];
-        $line    = $error['line'];
-        $log     = "\n异常提示：$message ($file:$line)\nStack trace:\n";
-        $trace   = debug_backtrace(1);
+        $file = $error['file'];
+        $line = $error['line'];
+        $log = "\n异常提示：$message ($file:$line)\nStack trace:\n";
+        $trace = debug_backtrace(1);
 
         foreach ($trace as $i => $t) {
             if (!isset($t['file'])) {
@@ -135,21 +143,21 @@ class HttpServer
 
         unset($this->response);
     }
+
     public function onWorkerStart()
     {
         require __DIR__ . '/../vendor/autoload.php';
         session_start();
-
     }
 
     public static function getInstance()
     {
         if (!self::$instance) {
-            self::$instance = new HttpServer;
+            self::$instance = new self();
         }
+
         return self::$instance;
     }
-
 }
 
 HttpServer::getInstance();

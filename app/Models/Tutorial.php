@@ -1,11 +1,20 @@
 <?php
+
+/*
+ * This file is part of slim-swoole.
+ *
+ * (c) kcloze <pei.greet@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace App\Models;
 
-use App\Models\BaseModel;
+use App\Library\XUtils;
 
-class Demo extends BaseModel
+class Tutorial extends BaseModel
 {
-
     /**
      * Returns table name mapped in the model.
      *
@@ -13,16 +22,16 @@ class Demo extends BaseModel
      */
     public function getSource()
     {
-        return 'ycf_user';
+        return 'tutorials_tbl';
     }
 
     public function demo()
     {
-        $data = $this->select("*", [
-            "id" => 1,
+        $data = $this->select('*', [
+            'tutorial_id' => 1,
         ]);
-        var_dump($data);
-        var_dump($this->container->db->log());
+        XUtils::p($data);
+        XUtils::p($this->container->db->log());
 
         // //count
         // $data = $this->count("*", [
@@ -49,7 +58,5 @@ class Demo extends BaseModel
         // var_dump('errors: ', $this->db->error());
 
         // var_dump($this->db->log());
-
     }
-
 }

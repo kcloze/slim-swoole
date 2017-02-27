@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of slim-swoole.
+ *
+ * (c) kcloze <pei.greet@qq.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace Tests\Functional;
 
 use Slim\App;
@@ -23,11 +32,12 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
     protected $withMiddleware = true;
 
     /**
-     * Process the application given a request method and URI
+     * Process the application given a request method and URI.
      *
-     * @param string $requestMethod the request method (e.g. GET, POST, etc.)
-     * @param string $requestUri the request URI
-     * @param array|object|null $requestData the request data
+     * @param string            $requestMethod the request method (e.g. GET, POST, etc.)
+     * @param string            $requestUri    the request URI
+     * @param array|object|null $requestData   the request data
+     *
      * @return \Slim\Http\Response
      */
     public function runApp($requestMethod, $requestUri, $requestData = null)
@@ -36,7 +46,7 @@ class BaseTestCase extends \PHPUnit_Framework_TestCase
         $environment = Environment::mock(
             [
                 'REQUEST_METHOD' => $requestMethod,
-                'REQUEST_URI'    => $requestUri,
+                'REQUEST_URI' => $requestUri,
             ]
         );
 
