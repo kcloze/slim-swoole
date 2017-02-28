@@ -71,9 +71,10 @@ return PhpCsFixer\Config::create()
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
-         ->exclude('vendor')
-         ->in(__DIR__)
-         ->name('*.php')
+            ->files()
+            ->exclude('vendor')
+            ->in(__DIR__)
+            ->name('*.php')
     )
     ->setUsingCache(false)
 ;
