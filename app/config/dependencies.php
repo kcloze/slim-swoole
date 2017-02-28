@@ -21,7 +21,7 @@ $container['renderer'] = function ($c) {
 // monolog
 $container['logger'] = function ($c) {
     $settings = $c->get('settings')['logger'];
-    $logger = new Monolog\Logger($settings['name']);
+    $logger   = new Monolog\Logger($settings['name']);
     $logger->pushProcessor(new Monolog\Processor\UidProcessor());
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
 
@@ -31,7 +31,7 @@ $container['logger'] = function ($c) {
 //use db
 $container['db'] = function ($c) {
     $settings = $c->get('settings')['db'];
-    $db = new Medoo\Medoo($settings);
+    $db       = new Medoo\Medoo($settings);
     unset($settings);
 
     return $db;

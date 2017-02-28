@@ -27,9 +27,9 @@ class HttpServer
 
         $http->set(
             [
-                'worker_num' => 5,
-                'daemonize' => false,
-                'max_request' => 10,
+                'worker_num'    => 5,
+                'daemonize'     => false,
+                'max_request'   => 10,
                 'dispatch_mode' => 1,
             ]
         );
@@ -111,10 +111,10 @@ class HttpServer
                 return;
         }
         $message = $error['message'];
-        $file = $error['file'];
-        $line = $error['line'];
-        $log = "\n异常提示：$message ($file:$line)\nStack trace:\n";
-        $trace = debug_backtrace(1);
+        $file    = $error['file'];
+        $line    = $error['line'];
+        $log     = "\n异常提示：$message ($file:$line)\nStack trace:\n";
+        $trace   = debug_backtrace(1);
 
         foreach ($trace as $i => $t) {
             if (!isset($t['file'])) {

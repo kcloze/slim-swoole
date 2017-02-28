@@ -118,7 +118,7 @@ class XUtils
      */
     public static function byteFormat($size, $dec = 2)
     {
-        $a = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
+        $a   = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
         $pos = 0;
         while ($size >= 1024) {
             $size /= 1024;
@@ -307,16 +307,16 @@ class XUtils
      */
     public static function splitsql($sql)
     {
-        $sql = preg_replace('/TYPE=(InnoDB|MyISAM|MEMORY)( DEFAULT CHARSET=[^; ]+)?/', 'ENGINE=\\1 DEFAULT CHARSET=' . Yii::app()->db->charset, $sql);
-        $sql = str_replace("\r", "\n", $sql);
-        $ret = [];
-        $num = 0;
+        $sql          = preg_replace('/TYPE=(InnoDB|MyISAM|MEMORY)( DEFAULT CHARSET=[^; ]+)?/', 'ENGINE=\\1 DEFAULT CHARSET=' . Yii::app()->db->charset, $sql);
+        $sql          = str_replace("\r", "\n", $sql);
+        $ret          = [];
+        $num          = 0;
         $queriesarray = explode(";\n", trim($sql));
         unset($sql);
         foreach ($queriesarray as $query) {
             $ret[$num] = '';
-            $queries = explode("\n", trim($query));
-            $queries = array_filter($queries);
+            $queries   = explode("\n", trim($query));
+            $queries   = array_filter($queries);
             foreach ($queries as $query) {
                 $str1 = substr($query, 0, 1);
                 if ($str1 != '#' && $str1 != '-') {
@@ -343,8 +343,8 @@ class XUtils
             return $string;
         }
 
-        $pre = chr(1);
-        $end = chr(1);
+        $pre    = chr(1);
+        $end    = chr(1);
         $string = str_replace(['&amp;', '&quot;', '&lt;', '&gt;'], [$pre . '&' . $end, $pre . '"' . $end, $pre . '<' . $end, $pre . '>' . $end], $string);
 
         $strcut = '';
@@ -448,7 +448,7 @@ class XUtils
     public static function autoCharset($string, $from = 'gbk', $to = 'utf-8')
     {
         $from = strtoupper($from) == 'UTF8' ? 'utf-8' : $from;
-        $to = strtoupper($to) == 'UTF8' ? 'utf-8' : $to;
+        $to   = strtoupper($to) == 'UTF8' ? 'utf-8' : $to;
         if (strtoupper($from) === strtoupper($to) || empty($string) || (is_scalar($string) && !is_string($string))) {
             //如果编码相同或者非字符串标量则不转换
             return $string;
@@ -463,7 +463,7 @@ class XUtils
             return $string;
         } elseif (is_array($string)) {
             foreach ($string as $key => $val) {
-                $_key = self::autoCharset($key, $from, $to);
+                $_key          = self::autoCharset($key, $from, $to);
                 $string[$_key] = self::autoCharset($val, $from, $to);
                 if ($key != $_key) {
                     unset($string[$key]);
@@ -580,7 +580,7 @@ class XUtils
             curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 2);
             // 发送请求
             $result = curl_exec($curl);
-            $found = false;
+            $found  = false;
             // 如果请求没有发送失败
             if ($result !== false) {
                 // 再检查http响应码是否为200
@@ -608,10 +608,10 @@ class XUtils
     public static function apiResultStandard($code, $message = null, $content = null, $callback = null)
     {
         $params = [
-            'code' => $code,
-            'message' => $message,
+            'code'      => $code,
+            'message'   => $message,
             'timeStamp' => time(),
-            'content' => $content,
+            'content'   => $content,
         ];
 
         return self::echoJson($params, $callback);
@@ -643,8 +643,8 @@ class XUtils
     public static function message($type, $content, $url = '')
     {
         $referer = Yii::$app->request->getReferrer();
-        $click = $url ? $url : ($referer ? $referer : 'javascript:history.back()');
-        $html = <<<EOT
+        $click   = $url ? $url : ($referer ? $referer : 'javascript:history.back()');
+        $html    = <<<EOT
 			<!DOCTYPE html>
 			<html lang="zh-hans">
 			<head>
