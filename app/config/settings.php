@@ -1,8 +1,7 @@
 <?php
 
 /*
- * This file is part of slim-swoole.
- *
+ * This file is part of PHP CS Fixer.
  * (c) kcloze <pei.greet@qq.com>
  *
  * This source file is subject to the MIT license that is bundled
@@ -28,7 +27,7 @@ return [
 
         //db settings
         'db' => [
-             'database_type'            => 'mysql',
+            'database_type'             => 'mysql',
             'database_name'             => 'test',
             'server'                    => '127.0.0.1',
             'username'                  => 'root',
